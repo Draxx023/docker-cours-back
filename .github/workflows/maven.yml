@@ -40,4 +40,14 @@ jobs:
         file: Dockerfile.gha
         push: true
         tags: rg.fr-par.scw.cloud/polytech2024/draxx023/back:v1
-    
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use CLI
+        uses: scaleway/action-scw@v0
+        with:
+          version: v2.13.0
+          access-key: ${{ secrets.SCW_ACCESS_KEY }}
+          secret-key: ${{ secrets.SCW_SECRET_KEY }}
+      - run: scw container namespace create name=ayoub/back
+      - run: scw container namespace deploy name=ayoub/back
