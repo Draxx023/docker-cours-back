@@ -36,6 +36,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
+        context: .
         file: Dockerfile.gha
         push: true
         tags: rg.fr-par.scw.cloud/polytech2024/draxx023/back:v1
